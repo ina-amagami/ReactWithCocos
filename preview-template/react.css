@@ -1,0 +1,14 @@
+.react-app {
+    /*font-family: Mplus2-Regular_LABEL;*/
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: block;
+    pointer-events: none;
+}
+
+.test {
+    color: white;
+    text-align: center;
+}

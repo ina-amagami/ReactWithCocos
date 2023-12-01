@@ -1,0 +1,22 @@
+{
+  "name": "CocosReactTest",
+  "uuid": "d5aa7338-8780-44d7-8563-583a107c6aea",
+  "creator": {
+    "version": "3.8.1"
+  },
+  "scripts": {
+    "react-build": "./node_modules/.bin/babel ./react-components --presets @babel/preset-react -d ./assets/react-components"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.5",
+    "@babel/plugin-syntax-jsx": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.2.17"
+  }
+}
