@@ -13,14 +13,14 @@
     text-align: center;
 }
 
-.test-button {
+.test-toggle {
     display: block;
     width: 100px;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     pointer-events: auto;
 }
 
-.test-toggle {
+.test-button {
     display: block;
     width: 100px;
     margin: 0 auto;

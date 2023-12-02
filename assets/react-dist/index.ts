@@ -4,26 +4,36 @@ const {
 } = React;
 // import Toggle from './Toggle';
 
-export const ReactApp = () => {
+export const ReactApp = props => {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
     className: "test"
-  }, "Hello React"), /*#__PURE__*/React.createElement("button", {
-    className: "test-button"
-  }, "Click!"), /*#__PURE__*/React.createElement(Toggle, null));
+  }, "Hello React"), /*#__PURE__*/React.createElement(Toggle, props.toggleVM), /*#__PURE__*/React.createElement("button", {
+    className: "test-button",
+    onClick: () => props.onClickButton()
+  }, "Click!"));
 };
-export class Toggle extends React.Component {
-  state = {
-    isToggleOn: true
+export const Toggle = props => {
+  const [isToggleOn, setIsToggleOn] = useState(props.defaultValue);
+  const toggleValue = prevValue => {
+    const newValue = !prevValue;
+    props.onToggleChange(newValue);
+    return newValue;
   };
-  handleClick = () => {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
-  };
-  render() {
-    return /*#__PURE__*/React.createElement("button", {
-      className: "test-toggle",
-      onClick: this.handleClick
-    }, this.state.isToggleOn ? 'ON' : 'OFF');
-  }
-}
+  return /*#__PURE__*/React.createElement("button", {
+    className: "test-toggle",
+    onClick: () => setIsToggleOn(toggleValue)
+  }, isToggleOn ? props.onText : props.offText);
+};
+
+// export class Toggle extends React.Component<IToggleProps, IToggleState> {
+//     state = { isToggleOn: true };
+//
+//     handleClick = () => {
+//         this.setState(state => ({
+//             isToggleOn: !state.isToggleOn
+//         }));
+//     }
+//
+//     render() {
+//     }
+// }

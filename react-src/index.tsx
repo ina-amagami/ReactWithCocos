@@ -2,35 +2,54 @@ import React from "react";
 const { useState } = React;
 // import Toggle from './Toggle';
 
-export const ReactApp = () => {
+export interface IAppViewModel {
+    toggleVM: IToggleViewModel;
+    onClickButton: () => void;
+}
+
+export const ReactApp: React.FC<IAppViewModel> = (props) => {
     return (
         <div>
             <h1 className="test">Hello React</h1>
-            <button className="test-button">Click!</button>
-            <Toggle />
+            <Toggle {...props.toggleVM} />
+            <button className="test-button" onClick={() => props.onClickButton()}>Click!</button>
         </div>
     );
 };
 
-interface IToggleProps {}
-interface IToggleState {
-    isToggleOn: boolean;
+export interface IToggleViewModel {
+    defaultValue: boolean;
+    offText: string;
+    onText: string;
+    onToggleChange: (x: boolean) => void;
 }
 
-export class Toggle extends React.Component<IToggleProps, IToggleState> {
-    state = { isToggleOn: true };
+export const Toggle: React.FC<IToggleViewModel> = (props) => {
+    const [isToggleOn, setIsToggleOn]
+        = useState(props.defaultValue)
 
-    handleClick = () => {
-        this.setState(state => ({
-            isToggleOn: !state.isToggleOn
-        }));
-    }
+    const toggleValue = (prevValue: boolean) => {
+        const newValue = !prevValue;
+        props.onToggleChange(newValue);
+        return newValue;
+    };
 
-    render() {
-        return (
-            <button className="test-toggle" onClick={this.handleClick}>
-                {this.state.isToggleOn ? 'ON' : 'OFF'}
-            </button>
-        );
-    }
+    return (
+        <button className="test-toggle" onClick={() => setIsToggleOn(toggleValue)}>
+            { isToggleOn ? props.onText : props.offText }
+        </button>
+    );
 }
+
+// export class Toggle extends React.Component<IToggleProps, IToggleState> {
+//     state = { isToggleOn: true };
+//
+//     handleClick = () => {
+//         this.setState(state => ({
+//             isToggleOn: !state.isToggleOn
+//         }));
+//     }
+//
+//     render() {
+//     }
+// }

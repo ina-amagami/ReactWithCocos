@@ -1,12 +1,21 @@
-import { _decorator, Component, Node, resources, Asset, TextAsset } from 'cc';
+import { _decorator, Component, Node, resources, TextAsset, Prefab, director, instantiate } from 'cc';
 import { EDITOR_NOT_IN_PREVIEW } from 'cc/env';
 const { ccclass, property } = _decorator;
 
 import ReactDOM from 'react-dom/client';
-import { ReactApp, Toggle } from 'react-app';
+import { ReactApp, IAppViewModel } from 'react-app';
 
 @ccclass('Main')
 export class Main extends Component {
+
+    @property(Prefab)
+    private cubePrefab: Prefab;
+    @property(Prefab)
+    private spherePrefab: Prefab;
+
+    private isSphere: boolean;
+    private viewModel: IAppViewModel;
+
     start() {
         if (!EDITOR_NOT_IN_PREVIEW) {
             resources.load('css/react', TextAsset, (err, asset) => {
@@ -25,9 +34,25 @@ export class Main extends Component {
                 reactDiv.id = 'react-app';
                 gameDiv.appendChild(reactDiv);
                 const root = ReactDOM.createRoot(reactDiv);
-                root.render(ReactApp());
+                this.viewModel = {
+                    toggleVM: {
+                        offText: "Cube",
+                        onText: "Sphere",
+                        defaultValue: false,
+                        onToggleChange: (x) => this.isSphere = x
+                    },
+                    onClickButton: () => {
+                        this.createObject();
+                    }
+                }
+                root.render(ReactApp(this.viewModel));
             }
         }
+    }
+
+    createObject() {
+        const prefab = this.isSphere ? this.spherePrefab : this.cubePrefab;
+        director.getScene().addChild(instantiate(prefab));
     }
 
     update(deltaTime: number) {
