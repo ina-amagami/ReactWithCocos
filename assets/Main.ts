@@ -1,19 +1,33 @@
-import { _decorator, Component, Node } from 'cc';
-import { EDITOR_NOT_IN_PREVIEW } from 'cc/env';
+import { _decorator, Component, Node, resources, Asset, TextAsset } from 'cc';
+import { EDITOR, EDITOR_NOT_IN_PREVIEW } from 'cc/env';
 const { ccclass, property } = _decorator;
 
 import reactDOM from 'react-dom/client';
 const { createRoot } = reactDOM;
-// import reactApp from './react-components/App.js';
-// const { App } = reactApp;
+import { App } from './generated/ReactComponents';
 
 @ccclass('Main')
 export class Main extends Component {
     start() {
         if (!EDITOR_NOT_IN_PREVIEW) {
-            // const root = createRoot(document.getElementById('react-app'));
-            const root = createRoot(document.getElementById('GameDiv'));
-            // root.render(App());
+            resources.load('css/react', TextAsset, (err, asset) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                const style = document.createElement('style');
+                style.appendChild(document.createTextNode(asset.text));
+                document.head.appendChild(style);
+            });
+
+            const gameDiv = document.getElementById('GameDiv');
+            if (gameDiv) {
+                const reactDiv = document.createElement('div');
+                reactDiv.id = 'react-app';
+                gameDiv.appendChild(reactDiv);
+                const root = createRoot(reactDiv);
+                root.render(App());
+            }
         }
     }
 
