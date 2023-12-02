@@ -1,9 +1,9 @@
 import { _decorator, Component, Node, resources, Asset, TextAsset } from 'cc';
-import { EDITOR, EDITOR_NOT_IN_PREVIEW } from 'cc/env';
+import { EDITOR_NOT_IN_PREVIEW } from 'cc/env';
 const { ccclass, property } = _decorator;
 
 import ReactDOM from 'react-dom/client';
-import { ReactApp } from './react/index';
+import { ReactApp, Toggle } from 'react-app';
 
 @ccclass('Main')
 export class Main extends Component {

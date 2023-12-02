@@ -1,4 +1,5 @@
 import React from "react";
+const { useState } = React;
 // import Toggle from './Toggle';
 
 export const ReactApp = () => {
@@ -11,8 +12,13 @@ export const ReactApp = () => {
     );
 };
 
-export class Toggle extends React.Component {
-    state: {isToggleOn: boolean} = {isToggleOn: true};
+interface IToggleProps {}
+interface IToggleState {
+    isToggleOn: boolean;
+}
+
+export class Toggle extends React.Component<IToggleProps, IToggleState> {
+    state = { isToggleOn: true };
 
     handleClick = () => {
         this.setState(state => ({

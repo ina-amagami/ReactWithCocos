@@ -5,10 +5,9 @@
     "version": "3.8.1"
   },
   "scripts": {
-    "react-build": "./node_modules/.bin/babel --extensions '.ts,.tsx' ./react -o ./assets/react/index.ts --watch"
+    "react-build": "./node_modules/.bin/babel --extensions '.tsx' ./react-src/ -o ./assets/react-dist/index.ts --watch"
   },
   "dependencies": {
-    "@babel/preset-typescript": "^7.23.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -17,6 +16,7 @@
     "@babel/core": "^7.23.5",
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17"
   }
