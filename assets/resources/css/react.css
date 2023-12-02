@@ -19,3 +19,10 @@
     margin: 0 auto;
     pointer-events: auto;
 }
+
+.test-toggle {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+    pointer-events: auto;
+}

@@ -5,10 +5,10 @@
     "version": "3.8.1"
   },
   "scripts": {
-    "react-build": "./node_modules/.bin/babel ./react-components --presets @babel/preset-react -o ./assets/generated/ReactComponents.ts",
-    "react-build-watch": "./node_modules/.bin/babel ./react-components --presets @babel/preset-react -o ./assets/generated/ReactComponents.ts --watch"
+    "react-build": "./node_modules/.bin/babel --extensions '.ts,.tsx' ./react -o ./assets/react/index.ts --watch"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.23.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

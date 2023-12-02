@@ -2,9 +2,8 @@ import { _decorator, Component, Node, resources, Asset, TextAsset } from 'cc';
 import { EDITOR, EDITOR_NOT_IN_PREVIEW } from 'cc/env';
 const { ccclass, property } = _decorator;
 
-import reactDOM from 'react-dom/client';
-const { createRoot } = reactDOM;
-import { App } from './generated/ReactComponents';
+import ReactDOM from 'react-dom/client';
+import { ReactApp } from './react/index';
 
 @ccclass('Main')
 export class Main extends Component {
@@ -25,8 +24,8 @@ export class Main extends Component {
                 const reactDiv = document.createElement('div');
                 reactDiv.id = 'react-app';
                 gameDiv.appendChild(reactDiv);
-                const root = createRoot(reactDiv);
-                root.render(App());
+                const root = ReactDOM.createRoot(reactDiv);
+                root.render(ReactApp());
             }
         }
     }
