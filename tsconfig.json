@@ -8,12 +8,6 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "paths": {
-      "db://internal/*": [
-        "/Applications/Cocos/Creator/3.8.1/CocosCreator.app/Contents/Resources/resources/3d/engine/editor/assets/*"
-      ],
-      "db://assets/*": [
-        "/Users/ina-amagami/Documents/Cocos/Test/CocosReactTest/assets/*"
-      ],
       "react-app/*": [
         "./react-src/*"
       ],

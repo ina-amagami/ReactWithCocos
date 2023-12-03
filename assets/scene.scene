@@ -85,8 +85,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 640,
-      "y": 360,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -124,8 +124,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 89.9842521301003,
-      "height": 50.4
+      "width": 0,
+      "height": 0
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -154,7 +154,7 @@
       "b": 255,
       "a": 255
     },
-    "_string": "label",
+    "_string": "Fonts are loaded on the Cocos side by placing a Label that is not displayed.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 50.888888888888886,
@@ -370,6 +370,7 @@
     "__type__": "8a71cM5b1hGbIQdOtMD9YP8",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 8
     },
