@@ -21,8 +21,9 @@ Support for CSS frameworks is not included. Individual adjustments may be necess
 
 ## Installation
 1. Download the project and open it with CocosCreator.
-2. Execute npm install.
-3. Run npm run react when editing React components (changes will be detected automatically thereafter).
+2. Execute `npm install`.
+3. Execute `npm run react` when editing React components (changes will be detected automatically thereafter).
+4. If you are doing an iOS/Android build with Capacitor, change the appId in `capacitor.config.json`.
 
 ## About npm run react
 JSX syntax for js or ts files is not supported in the Cocos test environment.
@@ -35,7 +36,7 @@ The converted files will always be in JavaScript, but we change the extension to
 
 Even if you write in ts/tsx, the type information will be lost, but on the IDE, referencing the files on the src side allows IntelliSense to function.
 
-If a new file is added and the extension conversion timing doesn't match, a js file may remain, so if it doesn't work properly, re-running npm run react will delete and then regenerate the contents under react-dist.
+If a new file is added and the extension conversion timing doesn't match, a js file may remain, so if it doesn't work properly, re-running `npm run react` will delete and then regenerate the contents under react-dist.
 
 ## About Changing Fonts
 It's easy to reflect the specified font in CSS by setting and hiding a font in components such as Label, as Cocos will load that font on its side.
