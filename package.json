@@ -8,6 +8,9 @@
     "react": "node ./tools/clean-react-dist.js & node ./tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch"
   },
   "dependencies": {
+    "@capacitor/android": "^5.5.1",
+    "@capacitor/core": "^5.5.1",
+    "@capacitor/ios": "^5.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -17,6 +20,7 @@
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@capacitor/cli": "^5.5.1",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
     "chokidar": "^3.5.3"

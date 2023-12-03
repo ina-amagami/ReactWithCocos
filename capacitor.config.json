@@ -1,0 +1,6 @@
+{
+  "appId": "jp.amagamina.reactwithcocossample",
+  "appName": "ReactWithCocos",
+  "webDir": "./build/web-mobile",
+  "plugins": {}
+}

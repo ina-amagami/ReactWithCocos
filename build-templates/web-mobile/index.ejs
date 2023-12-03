@@ -42,7 +42,30 @@
         <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
       </div>
     </div>
-  <%- include(cocosTemplate, {}) %>
-  <script>window.process = { env: { NODE_ENV: 'production' } }</script>
+  <% if (webDebuggerSrc) { %>
+  <script src="<%=webDebuggerSrc%>"></script>
+  <script type="text/javascript">
+    // open web debugger console
+    window.VConsole && (window.vConsole = new VConsole());
+  </script>
+  <% } %>
+  <!-- Polyfills bundle. -->
+  <script src="<%= polyfillsBundleFile %>" charset="utf-8"> </script>
+
+  <!-- SystemJS support. -->
+  <script src="<%= systemJsBundleFile %>" charset="utf-8"> </script>
+
+  <!-- Import map -->
+  <script src="<%= importMapFile%>" type="systemjs-importmap" charset="utf-8"> </script>
+
+  <!-- EDITED: Error prevention with Capacitor iOS -->
+  <script src="./<%= indexJsName %>"></script>
+
+  <!-- Error prevention with React -->
+  <% if (webDebuggerSrc) { %>
+    <script>window.process = { env: { NODE_ENV: 'development' } }</script>
+  <% } else { %>
+    <script>window.process = { env: { NODE_ENV: 'production' } }</script>
+  <% } %>
 </body>
 </html>

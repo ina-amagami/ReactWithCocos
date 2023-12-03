@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ReactWithCocos</string>
+    <string name="title_activity_main">ReactWithCocos</string>
+    <string name="package_name">jp.amagamina.reactwithcocossample</string>
+    <string name="custom_url_scheme">jp.amagamina.reactwithcocossample</string>
+</resources>
