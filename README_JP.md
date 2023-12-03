@@ -1,4 +1,5 @@
 # React.js with Cocos Creator
+[English](./README.md)
 
 ![](./Docs/img.png)
 
