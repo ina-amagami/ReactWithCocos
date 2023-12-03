@@ -23,7 +23,8 @@ Cocos Creator 3.8.1
 
 1. プロジェクトをダウンロードしCocosCreatorで開く
 2. ```npm install``` を実行
-5. Reactコンポーネントを編集するとき ```npm run react``` を実行（以降は変更を自動検知）
+3. Reactコンポーネントを編集するとき ```npm run react``` を実行（以降は変更を自動検知）
+4. CapacitorでiOS/Androidビルドを行う場合は `capacitor.config.json` のappIdを変更して下さい
 
 ## npm run react について
 
