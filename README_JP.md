@@ -1,7 +1,7 @@
 # React.js with Cocos Creator
 [English](./README.md)
 
-![](./Docs/img.png)
+![](./docs/img.png)
 
 CocosCreatorを使用したWebアプリケーション開発で、UIのみHTML/CSSで作成することを目的としてReactとJSX記法を利用できるよう設定を行ったサンプルプロジェクトです。
 

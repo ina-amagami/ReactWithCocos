@@ -1,6 +1,7 @@
 # React.js with Cocos Creator
+[Japanese](./README_JP.md)
 
-![](./Docs/img.png)
+![](./docs/img.png)
 
 This is a sample project configured to use React and JSX syntax for web application development with CocosCreator, aimed at creating the UI solely with HTML/CSS.
 
