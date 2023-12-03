@@ -11,8 +11,6 @@ export const ReactApp = props => {
     className: "test-input-head"
   }, "\u25BC HTML input"), /*#__PURE__*/React.createElement("input", {
     type: "text",
-    id: "name",
-    name: "name",
     className: "test-input"
   }));
 };

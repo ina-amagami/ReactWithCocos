@@ -16,7 +16,7 @@ export const ReactApp: React.FC<IAppViewModel> = (props) => {
                 <button onClick={() => props.onClickButton()}>{props.buttonText}</button>
             </div>
             <p className="test-input-head">▼ HTML input</p>
-            <input type="text" id="name" name="name" className="test-input" />
+            <input type="text" className="test-input" />
         </div>
     );
 };
