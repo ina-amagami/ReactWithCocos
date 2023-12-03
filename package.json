@@ -11,6 +11,7 @@
     "@capacitor/android": "^5.5.1",
     "@capacitor/core": "^5.5.1",
     "@capacitor/ios": "^5.5.1",
+    "capacitor-plugin-safe-area": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

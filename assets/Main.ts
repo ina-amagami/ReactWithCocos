@@ -1,8 +1,11 @@
-import { _decorator, Component, Node, resources, TextAsset, Prefab, director, instantiate } from 'cc';
+import { _decorator, Component, Node, resources, TextAsset, Prefab, director, instantiate, Font } from 'cc';
 const { ccclass, property } = _decorator;
 
 import ReactDOM from 'react-dom/client';
 import { ReactApp, IAppViewModel } from 'react-app';
+
+import capacitorSafeArea from 'capacitor-plugin-safe-area';
+const { SafeArea } = capacitorSafeArea;
 
 @ccclass('Main')
 export class Main extends Component {
@@ -48,13 +51,41 @@ export class Main extends Component {
             }
         }
         root.render(ReactApp(this.viewModel));
+
+        // Adjust Safe Area.
+        SafeArea.getSafeAreaInsets().then((data) => {
+            this.updateSafeArea(data);
+        });
+        SafeArea.addListener('safeAreaChanged', (data) => {
+            this.updateSafeArea(data);
+        });
     }
 
-    createObject() {
+    private createObject() {
         const prefab = this.isSphere ? this.spherePrefab : this.cubePrefab;
         director.getScene().addChild(instantiate(prefab));
     }
 
+    private updateSafeArea (data: capacitorSafeArea.SafeAreaInsets): void {
+        const { insets } = data;
+        document.documentElement.style.setProperty(
+            `--safe-area-top`, `${insets.top}px`,
+        );
+        document.documentElement.style.setProperty(
+            `--safe-area-right`, `${insets.right}px`,
+        );
+        document.documentElement.style.setProperty(
+            `--safe-area-bottom`, `${insets.bottom}px`,
+        );
+        document.documentElement.style.setProperty(
+            `--safe-area-left`, `${insets.left}px`,
+        );
+    }
+
     update(deltaTime: number) {
+    }
+
+    onDestroy() {
+        SafeArea.removeAllListeners().then();
     }
 }
