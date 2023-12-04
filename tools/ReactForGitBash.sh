@@ -1,0 +1,1 @@
+node tools/clean-react-dist.js && node tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch
