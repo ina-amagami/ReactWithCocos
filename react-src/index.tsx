@@ -4,6 +4,7 @@ import { IToggleViewModel, Toggle } from './Toggle';
 export interface IAppViewModel {
     toggleVM: IToggleViewModel;
     buttonText: string;
+    imgUrl: string;
     onClickButton: () => void;
 }
 
@@ -17,6 +18,7 @@ export const ReactApp: React.FC<IAppViewModel> = (props) => {
             </div>
             <p className="test-input-head">▼ HTML input</p>
             <input type="text" className="test-input" />
+            <img src={props.imgUrl} className="test-img" alt="TestIMG" />
         </div>
     );
 };

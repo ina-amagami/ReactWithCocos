@@ -51,3 +51,10 @@ div .test-button button{
     margin: 10px auto;
     pointer-events: auto;
 }
+
+.test-img {
+    width: 256px;
+    height: 256px;
+    display: block;
+    margin: 0 auto;
+}

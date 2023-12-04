@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, resources, TextAsset, Prefab, director, instantiate, Font } from 'cc';
+import { _decorator, Component, Node, resources, TextAsset, Prefab, director, instantiate, Font, ImageAsset } from 'cc';
 const { ccclass, property } = _decorator;
 
 import ReactDOM from 'react-dom/client';
@@ -14,6 +14,9 @@ export class Main extends Component {
     private cubePrefab: Prefab;
     @property(Prefab)
     private spherePrefab: Prefab;
+
+    @property(ImageAsset)
+    private image: ImageAsset;
 
     private isSphere: boolean;
     private viewModel: IAppViewModel;
@@ -46,11 +49,13 @@ export class Main extends Component {
                 onToggleChange: (x) => this.isSphere = x
             },
             buttonText: "Instantiate",
+            imgUrl: this.image.nativeUrl,
             onClickButton: () => {
                 this.createObject();
             }
         }
-        root.render(ReactApp(this.viewModel));
+        const reactApp = ReactApp(this.viewModel);
+        root.render(reactApp);
 
         // Adjust Safe Area.
         SafeArea.getSafeAreaInsets().then((data) => {

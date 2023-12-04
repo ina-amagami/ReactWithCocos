@@ -384,6 +384,10 @@
       "__uuid__": "4032f42b-bc7f-4df5-9c61-7fbf5caa1be6",
       "__expectedType__": "cc.Prefab"
     },
+    "image": {
+      "__uuid__": "2ce08829-aa26-4ad2-a25f-b6ce311bd0bf",
+      "__expectedType__": "cc.ImageAsset"
+    },
     "_id": "52N+w//KlHZJj5iOl35VCG"
   },
   {

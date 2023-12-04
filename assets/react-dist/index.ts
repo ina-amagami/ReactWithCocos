@@ -12,5 +12,9 @@ export const ReactApp = props => {
   }, "\u25BC HTML input"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     className: "test-input"
+  }), /*#__PURE__*/React.createElement("img", {
+    src: props.imgUrl,
+    className: "test-img",
+    alt: "TestIMG"
   }));
 };
