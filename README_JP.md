@@ -48,7 +48,7 @@ Labelコンポーネントなどフォントを使うものに適当に設定し
 
 実行環境によりパスが異なるため、imgタグのsrc属性に直接パスを指定することは非推奨です。
 
-assets以下に画像をインポートし、ImageAssetとして取得し`ImageAsset.nativeUrl`でパスを取得できます。
+assets以下に画像をインポートし、ImageAssetとして取得し`ImageAsset.nativeUrl`でパスを取得できます。これをReactコンポーネントに渡すことで表示できます。
 
 ```ts
 @property(ImageAsset)
@@ -60,8 +60,13 @@ const props = {
 root.render(reactApp(props));
 ```
 
+これはCocosを介さずにReactを使用する場合と比べて大変ですが、圧縮をCocosのビルドに任せることができる、ロードタイミングを制御できる等のメリットもあります。
+
+ただしASTC等のフォーマットはHTMLではサポートされないため、PNGもしくはJPG、ブラウザ要件に応じてWEBPなどのフォーマットを使用するようPresetを作成して下さい。
+
 ![](./docs/compress-img.png)
 
+Use Compress Texture を必ず使用することをおすすめします。チェックをオフにすると、ビルド後に元データよりサイズが大きくなってしまうことがあります。
 
 ## 既知バグ
 

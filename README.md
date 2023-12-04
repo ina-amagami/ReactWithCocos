@@ -28,7 +28,7 @@ Support for CSS frameworks is not included. Individual adjustments may be necess
 ## About npm run react
 JSX syntax for js or ts files is not supported in the Cocos test environment.
 
-To address this, we've decided to use Babel to convert files written in JSX into js that can be interpreted by Babel.
+To address this, To use Babel to convert files written in JSX into js that can be interpreted by Cocos test environment.
 
 Ideally, we would like to detect changes in the Cocos Editor and execute Babel, but for now, we place files under `react-src/` and start monitoring with the execution of `npm run react`. Any changes will result in the converted files being output under `assets/react-dist.`
 
@@ -49,7 +49,7 @@ You can import images under assets, get them as ImageAsset, and use `ImageAsset.
 
 ```ts
 @property(ImageAsset)
-private image: ImageAsset;.
+private image: ImageAsset;
 
 const props = {
     imgUrl: this.image.nativeUrl
@@ -61,7 +61,7 @@ This is more difficult than using React without Cocos, but has advantages such a
 
 However, formats such as ASTC are not supported in HTML, so you should create a preset that uses formats such as PNG or JPG, or WEBP depending on browser requirements.
 
-! [](. /docs/compress-img.png)
+![](./docs/compress-img.png)
 
 It is always recommended to use Use Compress Texture. If unchecked, the size of the data may be larger than the original data after building.
 
