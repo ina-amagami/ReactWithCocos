@@ -24,7 +24,7 @@ Cocos Creator 3.8.1
 1. プロジェクトをダウンロードしCocosCreatorで開く
 2. ```npm install``` を実行
 3. Reactコンポーネントを編集したら以下のビルドコマンド実行（以降は変更を自動検出）  
-Mac: ```npm run react``` もしくは ```sh ./React.sh```
+Mac: ```npm run react``` もしくは ```sh ./React.sh```  
 Win: GitBashで ```./React.sh```
 4. CapacitorでiOS/Androidビルドを行う場合は `capacitor.config.json` のappIdを変更して下さい
 

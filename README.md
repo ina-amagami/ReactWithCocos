@@ -23,7 +23,7 @@ Support for CSS frameworks is not included. Individual adjustments may be necess
 1. Download the project and open it with CocosCreator.
 2. Execute `npm install`.
 3. Execute command when editing React components (changes will be detected automatically thereafter).  
-Mac: ```npm run react```  or ```sh ./React.sh```
+Mac: ```npm run react```  or ```sh ./React.sh```  
 Win: ```./React.sh``` in GitBash.
 4. If you are doing an iOS/Android build with Capacitor, change the appId in `capacitor.config.json`.
 
