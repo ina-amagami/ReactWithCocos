@@ -22,7 +22,9 @@ Support for CSS frameworks is not included. Individual adjustments may be necess
 ## Installation
 1. Download the project and open it with CocosCreator.
 2. Execute `npm install`.
-3. Execute `npm run react` when editing React components (changes will be detected automatically thereafter).
+3. Execute command when editing React components (changes will be detected automatically thereafter).  
+Mac: ```npm run react```  or ```sh ./React.sh```
+Win: ```./React.sh``` in GitBash.
 4. If you are doing an iOS/Android build with Capacitor, change the appId in `capacitor.config.json`.
 
 ## About npm run react
@@ -230,11 +232,11 @@ Add settings to package.json so you can run all of these simultaneously.
 
 ```json
   "scripts": {
-    "react": "node ./tools/clean-react-dist.js & node ./tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch"
+    "react": "node tools/clean-react-dist.js && node tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch"
   },
 ```
 
-Now npm run react will work for conversion. If it's okay to have the command split into two, splitting the scripts into two might be a good idea to avoid execution order problems.
+Now npm run react will work for conversion. The contents are the same when creating `React.sh`.
 
 ### Load CSS
 Since Cocos doesn't support css in file format, place it in the resources folder and apply it by loading it as a TextAsset at runtime.

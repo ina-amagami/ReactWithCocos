@@ -23,10 +23,12 @@ Cocos Creator 3.8.1
 
 1. プロジェクトをダウンロードしCocosCreatorで開く
 2. ```npm install``` を実行
-3. Reactコンポーネントを編集するとき ```npm run react``` を実行（以降は変更を自動検知）
+3. Reactコンポーネントを編集したら以下のビルドコマンド実行（以降は変更を自動検出）  
+Mac: ```npm run react``` もしくは ```sh ./React.sh```
+Win: GitBashで ```./React.sh```
 4. CapacitorでiOS/Androidビルドを行う場合は `capacitor.config.json` のappIdを変更して下さい
 
-## npm run react について
+## npm run react (React.sh) について
 
 Cocosのテスト環境ではJSX記法を利用したjsやtsファイルはサポートしていません。
 
@@ -239,11 +241,11 @@ fs.readdir(directory, (err, files) => {
 
 ```json
   "scripts": {
-    "react": "node ./tools/clean-react-dist.js & node ./tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch"
+    "react": "node tools/clean-react-dist.js && node tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch"
   },
 ```
 
-これで `npm run react` を実行すると変換が動作するようになります。コマンドが2つに分かれてもいい場合は実行順問題が起きないようにscriptsも2つに分けても良さそうです。
+これで `npm run react` を実行すると変換が動作するようになります。React.shを作成する場合も中身は同じです。
 
 ### cssをロード
 
