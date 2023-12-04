@@ -44,6 +44,25 @@ ts/tsxで書いても型情報は消えてしまいますが、IDE上ではsrc�
 
 Labelコンポーネントなどフォントを使うものに適当に設定して非表示にしておくと、Cocos側でそのフォントをロードしてくれるのでcss側でフォント名を指定すれば反映されてお手軽です。
 
+## 画像の表示について
+
+実行環境によりパスが異なるため、imgタグのsrc属性に直接パスを指定することは非推奨です。
+
+assets以下に画像をインポートし、ImageAssetとして取得し`ImageAsset.nativeUrl`でパスを取得できます。
+
+```ts
+@property(ImageAsset)
+private image: ImageAsset;
+
+const props = {
+    imgUrl: this.image.nativeUrl
+}
+root.render(reactApp(props));
+```
+
+![](./docs/compress-img.png)
+
+
 ## 既知バグ
 
 - iOSのブラウザ（Safari, Chrome共通）でボタンを押せる範囲が見た目よりも大きくなってしまう（ReactとCocosの組み合わせによる挙動なのかHTML/CSS的なミスなのか不明）

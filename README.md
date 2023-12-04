@@ -41,6 +41,30 @@ If a new file is added and the extension conversion timing doesn't match, a js f
 ## About Changing Fonts
 It's easy to reflect the specified font in CSS by setting and hiding a font in components such as Label, as Cocos will load that font on its side.
 
+## About img
+
+It is deprecated to specify the path directly in the src attribute of the img tag because the path varies depending on the execution environment.
+
+You can import images under assets, get them as ImageAsset, and use `ImageAsset.nativeUrl` to get the path. This can then be passed to a React component for display.
+
+```ts
+@property(ImageAsset)
+private image: ImageAsset;.
+
+const props = {
+    imgUrl: this.image.nativeUrl
+}
+root.render(reactApp(props));
+```
+
+This is more difficult than using React without Cocos, but has advantages such as leaving compression to the Cocos build and controlling load timing.
+
+However, formats such as ASTC are not supported in HTML, so you should create a preset that uses formats such as PNG or JPG, or WEBP depending on browser requirements.
+
+! [](. /docs/compress-img.png)
+
+It is always recommended to use Use Compress Texture. If unchecked, the size of the data may be larger than the original data after building.
+
 ## Known Bugs
 On iOS browsers (both Safari and Chrome), the clickable area of buttons becomes larger than it appears (unclear whether this is due to the combination of React and Cocos or a mistake in HTML/CSS).
 
