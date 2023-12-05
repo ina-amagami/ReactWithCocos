@@ -3,7 +3,7 @@
 const fs = require('fs');
 const chokidar = require('chokidar');
 
-const watcher = chokidar.watch('./assets/react-dist',
+const watcher = chokidar.watch('./assets/react/dist',
     {ignored: /^\./, persistent: true});
 
 watcher.on('ready',function(){

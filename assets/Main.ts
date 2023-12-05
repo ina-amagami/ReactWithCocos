@@ -2,7 +2,7 @@ import { _decorator, Component, Node, resources, TextAsset, Prefab, director, in
 const { ccclass, property } = _decorator;
 
 import ReactDOM from 'react-dom/client';
-import { ReactApp, IAppViewModel } from 'react-app';
+import { ReactApp, IAppViewModel } from 'react-components';
 
 import capacitorSafeArea from 'capacitor-plugin-safe-area';
 const { SafeArea } = capacitorSafeArea;

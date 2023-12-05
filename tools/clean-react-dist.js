@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const directory = './assets/react-dist';
+const directory = './assets/react/dist';
 const excludeExtension = '.meta';
 
 fs.readdir(directory, (err, files) => {

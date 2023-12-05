@@ -8,11 +8,11 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "paths": {
-      "react-app/*": [
-        "./react-src/*"
+      "react-components/*": [
+        "./assets/react/src/*"
       ],
-      "react-app": [
-        "./react-src/index.tsx"
+      "react-components": [
+        "./assets/react/src/index.tsx"
       ]
     }
   }

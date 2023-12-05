@@ -32,13 +32,13 @@ JSX syntax for js or ts files is not supported in the Cocos test environment.
 
 To address this, To use Babel to convert files written in JSX into js that can be interpreted by Cocos test environment.
 
-Ideally, we would like to detect changes in the Cocos Editor and execute Babel, but for now, we place files under `react-src/` and start monitoring with the execution of `npm run react`. Any changes will result in the converted files being output under `assets/react-dist.`
+Ideally, we would like to detect changes in the Cocos Editor and execute Babel, but for now, we place files under `assets/react/src/` and start monitoring with the execution of `npm run react`. Any changes will result in the converted files being output under `assets/react/dist.`
 
 The converted files will always be in JavaScript, but we change the extension to ts. If we don't do this, importing them as modules into other TypeScript files doesn't work well.
 
 Even if you write in ts/tsx, the type information will be lost, but on the IDE, referencing the files on the src side allows IntelliSense to function.
 
-If a new file is added and the extension conversion timing doesn't match, a js file may remain, so if it doesn't work properly, re-running `npm run react` will delete and then regenerate the contents under react-dist.
+If a new file is added and the extension conversion timing doesn't match, a js file may remain, so if it doesn't work properly, re-running `npm run react` will delete and then regenerate the contents under `assets/react/dist`.
 
 ## About Changing Fonts
 It's easy to reflect the specified font in CSS by setting and hiding a font in components such as Label, as Cocos will load that font on its side.
@@ -94,7 +94,7 @@ Here is some reference information for introducing React to your own projects wi
 
 
 ### tsconfig Settings
-The name of the react-app part and the location of src are arbitrary.
+The name of the react-components part and the location of src are arbitrary.
 
 ```json
   "compilerOptions": {
@@ -102,11 +102,11 @@ The name of the react-app part and the location of src are arbitrary.
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "paths": {
-      "react-app/*": [
-        "./react-src/*"
+      "react-components/*": [
+        "./react/src/*"
       ],
-      "react-app": [
-        "./react-src/index.tsx"
+      "react-components": [
+        "./react/src/index.tsx"
       ]
     }
   }
@@ -140,8 +140,8 @@ Use an import-map so that on the Cocos execution side, it looks at the dist side
 ```json
 {
   "imports": {
-    "react-app": "./assets/react-dist/index.ts",
-    "react-app/": "./assets/react-dist/"
+    "react-components": "./assets/react/dist/index.ts",
+    "react-components/": "./assets/react/dist/"
   }
 }
 ```
@@ -155,11 +155,11 @@ In tsconfig, as shown above, set the paths so that the IDE looks at the original
   "compilerOptions": {
     ...
     "paths": {
-      "react-app/*": [
-        "./react-src/*"
+      "react-components/*": [
+        "./assets/react/src/*"
       ],
-      "react-app": [
-        "./react-src/index.tsx"
+      "react-components": [
+        "./assets/react/src/index.tsx"
       ]
     }
   }
@@ -180,7 +180,7 @@ Prepare `.babelrc` after installing all the necessary packages.
 Use the following command for conversion.
 
 ```sh
-./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch
+./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./assets/react/src/ -d ./assets/react/dist/ --watch
 ```
 
 Since Babel always outputs with a js extension, create a process in nodejs to convert it to ts.
@@ -190,7 +190,7 @@ Since Babel always outputs with a js extension, create a process in nodejs to co
 const fs = require('fs');
 const chokidar = require('chokidar');
 
-const watcher = chokidar.watch('./assets/react-dist',
+const watcher = chokidar.watch('./assets/react/dist',
     {ignored: /^\./, persistent: true});
 
 watcher.on('ready',function(){
@@ -212,7 +212,7 @@ Since running this script and Babal at the same time may leave js files because 
 const fs = require('fs');
 const path = require('path');
 
-const directory = './assets/react-dist';
+const directory = './assets/react/dist';
 const excludeExtension = '.meta';
 
 fs.readdir(directory, (err, files) => {
@@ -232,7 +232,7 @@ Add settings to package.json so you can run all of these simultaneously.
 
 ```json
   "scripts": {
-    "react": "node tools/clean-react-dist.js && node tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./react-src/ -d ./assets/react-dist/ --watch"
+    "react": "node tools/clean-react-dist.js && node tools/ext-js-to-ts.js & ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./assets/react/src/ -d ./assets/react/dist/ --watch"
   },
 ```
 
@@ -295,14 +295,14 @@ For elements where input is desired below this, set pointer-events to auto.
 Render to the root that was created earlier.
 
 ```ts
-import { ReactApp } from 'react-app';
+import { ReactApp } from 'react-components';
 
 root.render(ReactApp());
 ```
 
 ### Example of the Above ReactApp
 
-`react-src/index.tsx`
+`assets/react/src/index.tsx`
 ```ts
 import React from "react";
 

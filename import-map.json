@@ -1,6 +1,6 @@
 {
   "imports": {
-    "react-app": "./assets/react-dist/index.ts",
-    "react-app/": "./assets/react-dist/"
+    "react-components": "./assets/react/dist/index.ts",
+    "react-components/": "./assets/react/dist/"
   }
 }
