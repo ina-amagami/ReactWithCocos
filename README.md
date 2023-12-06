@@ -43,7 +43,7 @@ If a new file is added and the extension conversion timing doesn't match, a js f
 If you want to avoid converting the extension from js to ts, you can output as a CommonJS module in [MUI v5 Installation Instructions](./docs/MUI_SETUP.md).
 
 ## About Changing Fonts
-It's easy to reflect the specified font in CSS by setting and hiding a font in components such as Label, as Cocos will load that font on its side.
+It's easy to reflect the specified font in CSS by setting and hiding a font in components such as Label, as Cocos will load that font on its side. (loaded with the name "FONT_NAME"_LABEL)
 
 ## About img
 
@@ -241,23 +241,23 @@ Add settings to package.json so you can run all of these simultaneously.
 Now npm run react will work for conversion. The contents are the same when creating `React.sh`.
 
 ### Load CSS
-Since Cocos doesn't support css in file format, place it in the resources folder and apply it by loading it as a TextAsset at runtime.
+Since Cocos doesn't support css in file format, place it in the resources folder and apply it by loading it as a TextAsset at runtime. Here is how to load all files contained under `resources/css`.
 
 ```ts
 import { resources, TextAsset } from 'cc';
 
-resources.load('css/react', TextAsset, (err, asset) => {
+resources.loadDir('css', TextAsset, (err, assets) => {
     if (err) {
         console.error(err);
         return;
     }
     const style = document.createElement('style');
-    style.appendChild(document.createTextNode(asset.text));
+    for (const asset of assets) {
+        style.appendChild(document.createTextNode(asset.text));
+    }
     document.head.appendChild(style);
 });
 ```
-
-While this is for one file, setting it up to load all css under a specified directory would make it easier to support various frameworks.
 
 ### Create a Root for React
 The game's div element is prepared with the id GameDiv. This is the same in both the preview environment and after building, so create a root for React inside this element.
