@@ -17,7 +17,7 @@ Cocos Creator 3.8.1
 ## Notes
 It works in a browser preview, but you cannot click on HTML elements during an in-editor preview. Currently, there is no known workaround, so the use of CocosInspector is recommended if you're incorporating React.
 
-Support for CSS frameworks is not included. Individual adjustments may be necessary for each framework, and compatibility issues may arise. Since [MUI v5](https://mui.com/) could be installed, if you want to use it, please refer to [How to setup here](./docs/MUI_SETUP.md).
+Support for CSS frameworks is not included. Individual adjustments may be necessary for each framework, and compatibility issues may arise. Since [MUI v5](https://mui.com/) could be installed, if you want to use it, please refer to [How to setup here](./docs/MUI_SETUP.md). The `@emotion/react` configuration is also explained.
 
 ## Installation
 1. Download the project and open it with CocosCreator.
