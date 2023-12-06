@@ -17,7 +17,7 @@ Cocos Creator 3.8.1
 ## Notes
 It works in a browser preview, but you cannot click on HTML elements during an in-editor preview. Currently, there is no known workaround, so the use of CocosInspector is recommended if you're incorporating React.
 
-Support for CSS frameworks is not included. Individual adjustments may be necessary for each framework, and compatibility issues may arise.
+Support for CSS frameworks is not included. Individual adjustments may be necessary for each framework, and compatibility issues may arise. Since [MUI v5](https://mui.com/) could be installed, if you want to use it, please refer to [How to setup here](./docs/MUI_SETUP.md).
 
 ## Installation
 1. Download the project and open it with CocosCreator.
@@ -39,6 +39,8 @@ The converted files will always be in JavaScript, but we change the extension to
 Even if you write in ts/tsx, the type information will be lost, but on the IDE, referencing the files on the src side allows IntelliSense to function.
 
 If a new file is added and the extension conversion timing doesn't match, a js file may remain, so if it doesn't work properly, re-running `npm run react` will delete and then regenerate the contents under `assets/react/dist`.
+
+If you want to avoid converting the extension from js to ts, you can output as a CommonJS module in [MUI v5 Installation Instructions](./docs/MUI_SETUP.md).
 
 ## About Changing Fonts
 It's easy to reflect the specified font in CSS by setting and hiding a font in components such as Label, as Cocos will load that font on its side.
