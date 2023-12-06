@@ -77,7 +77,7 @@ root.render(ReactApp());
 
 This is all... You don't have to go through the special process of converting from js to ts, so even if you don't use MUI, this might be better, although it is a hassle to add one more line on the user's side.
 
-## Ex. Adding Babel plugin
+## Ex. Adding Babel plugin (Build size & emotion)
 
 By adding the Babel plugin, the following conversions are automatically performed, preventing unintentional increase in build size.
 
@@ -87,10 +87,13 @@ import { Button } from "@mui/material"
 import Button from "@mui/material/Button"
 ```
 
+In addition, will also set up CSSinJS capable `@emotion/react` to be transposable.
+
 ### Installation
 
 ```sh
 npm install --save-dev babel-plugin-import
+npm install --save-dev @emotion/babel-plugin
 ```
 
 ### Settings
@@ -106,6 +109,9 @@ npm install --save-dev babel-plugin-import
   ],
   "plugins": [
     [
+      "@emotion/babel-plugin"
+    ],
+    [
       "babel-plugin-import",
       {
         "libraryName": "@mui/material",
@@ -114,6 +120,7 @@ npm install --save-dev babel-plugin-import
       },
       "core"
     ],
+    /* If you use "icons", you can also use this */
     [
       "babel-plugin-import",
       {
@@ -126,4 +133,18 @@ npm install --save-dev babel-plugin-import
   ]
 }
 
+```
+
+Add `emotion/react/types/css-prop` to types in tsconfig. `/temp/tsconfig.cocos.json` from which tsconfig is extended, or it will not be reflected.
+
+`.tsconfig`
+```json
+"compilerOptions": {
+  "types": [
+    "./temp/declarations/cc.custom-macro",
+    "./temp/declarations/cc",
+    "./temp/declarations/jsb",
+    "./temp/declarations/cc.env",
+    "@emotion/react/types/css-prop"
+  ],
 ```

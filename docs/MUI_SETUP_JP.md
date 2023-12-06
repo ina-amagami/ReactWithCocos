@@ -77,7 +77,7 @@ root.render(ReactApp());
 
 以上です。js→tsへの変換という特殊な工程を踏まなくても済むので、利用側で1行増えてしまう点は面倒ではありますがMUIを使わない場合でもこちらの方がいいかもしれませんね。
 
-## Ex. Babelプラグイン追加
+## Ex. Babelプラグイン追加（サイズ対策・emotion設定）
 
 更にBabelプラグインを追加することで以下の変換を自動で行ってくれるようになり、意図せずビルドサイズが膨らむことを防止できます。
 
@@ -87,10 +87,13 @@ import { Button } from "@mui/material"
 import Button from "@mui/material/Button"
 ```
 
+ついでにCSSinJSができるemotionもトランスパイル可能なように設定します。
+
 ### インストール
 
 ```sh
 npm install --save-dev babel-plugin-import
+npm install --save-dev @emotion/babel-plugin
 ```
 
 ### 設定
@@ -106,6 +109,9 @@ npm install --save-dev babel-plugin-import
   ],
   "plugins": [
     [
+      "@emotion/babel-plugin"
+    ],
+    [
       "babel-plugin-import",
       {
         "libraryName": "@mui/material",
@@ -114,6 +120,7 @@ npm install --save-dev babel-plugin-import
       },
       "core"
     ],
+    /* iconsを利用する場合はこちらも */
     [
       "babel-plugin-import",
       {
@@ -126,4 +133,18 @@ npm install --save-dev babel-plugin-import
   ]
 }
 
+```
+
+tsconfigのtypesに`emotion/react/types/css-prop`を追加する。tsconfigの継承元である`./temp/tsconfig.cocos.json` の内容も入れておかないと反映されなくなるので注意。
+
+`.tsconfig`
+```json
+"compilerOptions": {
+  "types": [
+    "./temp/declarations/cc.custom-macro",
+    "./temp/declarations/cc",
+    "./temp/declarations/jsb",
+    "./temp/declarations/cc.env",
+    "@emotion/react/types/css-prop"
+  ],
 ```
