@@ -38,7 +38,18 @@ npm install --save-dev @babel/preset-env
 
 ## js → tsへの変換は行わない
 
-いずれか使用してBabelを実行
+### import-mapを修正
+
+```json
+{
+  "imports": {
+    "react-components": "./assets/react/dist/index.js",
+    "react-components/": "./assets/react/dist/"
+  }
+}
+```
+
+### いずれか使用してBabelを実行
 
 `.tsconfig`
 ```json
@@ -52,30 +63,51 @@ npm install --save-dev @babel/preset-env
 node tools/clean-react-dist.js && ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./assets/react/src/ -d ./assets/react/dist/ --watch
 ```
 
-## import-mapの設定
+セットアップは以上です。
 
-```json
-{
-  "imports": {
-    "react-components": "./assets/react/dist/index.js",
-    "react-components/": "./assets/react/dist/"
-  }
+### CommonJSモジュールを使用する注意点
+
+CocosCreatorへTypeScriptではないCommonJSモジュールをインポートする注意点として、jsとtsの双方で同じモジュールをインポートすると、モジュールが重複してビルドに含まれます。
+
+そのためReactやMUI等のモジュールは、Reactコンポーネントを作成するためのtsxファイルのみで参照し、CocosCreator用に作成するTypeScriptから参照しないことを推奨します。
+
+例えばReactのみを導入する方法ではReactDOMを使用したルート要素の作成をCocosCreator側のMain.tsスクリプトで実行していましたが、これをtsxファイル内に含めてfunctionのみ公開します。
+
+`index.tsx`
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const ReactRoot: React.FC = () => {
+    return (
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+    );
+};
+
+export function renderRoot(div: HTMLDivElement) {
+    const root = ReactDOM.createRoot(div);
+    root.render(ReactRoot({}));
 }
+
+export default { renderRoot }
 ```
 
-## TypeScriptからコンポーネントを利用する
-
+`Main.ts`
 ```ts
 // CommonJSモジュールでこの書き方はできない
-// import { ReactApp } from 'react-components';
+// import { renderRoot } from 'react-components';
 
 import RC from 'react-components';
-const { ReactApp } = RC;
 
-root.render(ReactApp());
+const gameDiv = document.getElementById('GameDiv');
+const reactDiv = document.createElement('div');
+reactDiv.id = 'react-root';
+gameDiv.appendChild(reactDiv);
+RC.renderRoot(reactDiv);
 ```
-
-以上です。js→tsへの変換という特殊な工程を踏まなくても済むので、利用側で1行増えてしまう点は面倒ではありますがMUIを使わない場合でもこちらの方がいいかもしれませんね。
 
 ## Ex. Babelプラグイン追加（サイズ対策・emotion設定）
 

@@ -38,7 +38,18 @@ Edit ``.babelrc``.
 
 ## Do not convert js → ts
 
-Run Babel using either.
+### import-map.json configuration.
+
+```json
+{
+  "imports": {
+    "react-components": "./assets/react/dist/index.js",
+    "react-components/": "./assets/react/dist/"
+  }
+}
+```
+
+### Run Babel using either.
 
 `.tsconfig`
 ```json
@@ -52,30 +63,51 @@ Run Babel using either.
 node tools/clean-react-dist.js && ./node_modules/.bin/babel --extensions '.js,.ts,.jsx,.tsx' ./assets/react/src/ -d ./assets/react/dist/ --watch
 ```
 
-## import-map.json configuration.
+That's it for setup.
 
-```json
-{
-  "imports": {
-    "react-components": "./assets/react/dist/index.js",
-    "react-components/": "./assets/react/dist/"
-  }
+### Notes on using CommonJS modules
+
+As a precaution for importing non-TypeScript CommonJS modules to CocosCreator, if you import the same module in both js and ts, the module will be duplicated and included in the build.
+
+Therefore, it is recommended that modules such as React and MUI be referenced only in the tsx file for creating React components, and not from the TypeScript created for CocosCreator.
+
+For example, in the method of introducing only React, the creation of the root element using ReactDOM was executed in the Main.ts script on the CocosCreator side, but this is included in the tsx file and only functions are exposed.
+
+`index.tsx`
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const ReactRoot: React.FC = () => {
+    return (
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+    );
+};
+
+export function renderRoot(div: HTMLDivElement) {
+    const root = ReactDOM.createRoot(div);
+    root.render(ReactRoot({}));
 }
+
+export default { renderRoot }
 ```
 
-## Using components from TypeScript.
-
+`Main.ts`
 ```ts
-// Cannot write this way in CommonJS module
-// import { ReactApp } from 'react-components';
+// ↓ Cannot write this way in CommonJS module
+// import { renderRoot } from 'react-components';
 
 import RC from 'react-components';
-const { ReactApp } = RC;.
 
-root.render(ReactApp());
+const gameDiv = document.getElementById('GameDiv');
+const reactDiv = document.createElement('div');
+reactDiv.id = 'react-root';
+gameDiv.appendChild(reactDiv);
+RC.renderRoot(reactDiv);
 ```
-
-This is all... You don't have to go through the special process of converting from js to ts, so even if you don't use MUI, this might be better, although it is a hassle to add one more line on the user's side.
 
 ## Ex. Adding Babel plugin (Build size & emotion)
 
