@@ -119,30 +119,28 @@ import { Button } from "@mui/material"
 import Button from "@mui/material/Button"
 ```
 
-In addition, will also set up CSSinJS capable `@emotion/react` to be transposable.
-
 ### Installation
 
 ```sh
 npm install --save-dev babel-plugin-import
-npm install --save-dev @emotion/babel-plugin
 ```
 
 ### Settings
 
-`.babelrc`
+In addition, will also set up CSSinJS capable `@emotion/react` to be transposable.
 
+`.babelrc`
 ```json
 {
   "presets": [
     "@babel/preset-env",
     "@babel/preset-typescript",
-    "@babel/preset-react"
+    ["@babel/preset-react", {
+      "runtime": "automatic",
+      "importSource": "@emotion/react"
+    }]
   ],
   "plugins": [
-    [
-      "@emotion/babel-plugin"
-    ],
     [
       "babel-plugin-import",
       {
